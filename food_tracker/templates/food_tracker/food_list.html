@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Tracker</title>
+</head>
+<body>
+    <h1>Food Entries</h1>
+    <ul>
+        {% for entry in entries %}
+            <li>
+                {{ entry.date }}: {{ entry.name }} ({{ entry.calories }} kcal)
+            </li>
+        {% empty %}
+            <li>No food entries yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
