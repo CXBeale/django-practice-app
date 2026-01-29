@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Health-Based WebApp{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        {% if user.is_authenticated %}
+            <a href="/">Home</a> |
+            <a href="/accounts/logout/">Logout</a>
+        {% else %}
+            <a href="/accounts/login/">Login</a> |
+            <a href="/register/">Register</a>
+        {% endif %}
+    </nav>
+    <hr>
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% block content %}{% endblock %}
+</body>
+</html>
