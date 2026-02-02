@@ -20,3 +20,8 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
+
+# User profile view
+@login_required
+def profile(request):
+    return render(request, 'food_tracker/profile.html')
