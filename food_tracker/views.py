@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import FoodEntry
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def food_list(request):
     print("Food list view called")
     entries = FoodEntry.objects.all().order_by('-date')      # Retrieve all food entries ordered by most recent first

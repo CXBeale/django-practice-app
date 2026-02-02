@@ -13,6 +13,7 @@ Brief description of the project and its purpose.
     - Logout confirmation page
     - password reset form
     - password reset confirmation page
+  - To protect authenticated routes in Django, the @login_required decorator was used
 
 ## MVP Feature List
 
