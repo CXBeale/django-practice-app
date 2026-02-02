@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('food_tracker.urls')),  # Include URLs from the food_tracker app at the root URL (Homepage)
+    path('accounts/', include('django.contrib.auth.urls')),  # Include built-in auth URLs under /accounts/
 ]
