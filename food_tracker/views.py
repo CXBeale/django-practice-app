@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import FoodEntry
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -25,3 +25,15 @@ def register(request):
 @login_required
 def profile(request):
     return render(request, 'food_tracker/profile.html')
+
+# User profile edit view
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = UserChangeForm(instance=request.user)
+    return render(request, 'food_tracker/edit_profile.html', {'form': form})
