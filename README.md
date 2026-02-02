@@ -7,6 +7,12 @@ Brief description of the project and its purpose.
 ## Features
 
 - List of main features
+- Django Authentication:
+  - The app uses built in django authentication features and includes:
+    - Login page
+    - Logout confirmation page
+    - password reset form
+    - password reset confirmation page
 
 ## MVP Feature List
 
