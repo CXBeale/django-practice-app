@@ -34,7 +34,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['myhealthapp.herokuapp.com', ]
+ALLOWED_HOSTS = ['myhealthapp-2a36ba525525.herokuapp.com', ]
 
 
 # Application definition
