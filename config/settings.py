@@ -14,11 +14,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
-# Load environment variables from .env file
-load_dotenv()
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,9 +27,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['myhealthapp.herokuapp.com', ]
+ALLOWED_HOSTS = ['myhealthapp.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
