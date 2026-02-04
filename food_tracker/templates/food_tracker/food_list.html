@@ -4,10 +4,9 @@
   <a href="{% url 'add_food_entry' %}">Add New Entry</a>
   {% for entry in entries %}
     <div>
-      <strong>{{ entry.name }}</strong> ({{ entry.quantity }})<br>
+      <strong>{{ entry.food_name }}</strong> ({{ entry.quantity }})<br>
       Date: {{ entry.date }} at {{ entry.time }}<br>
       Notes: {{ entry.notes }}<br>
-      Created: {{ entry.created_at }} | Updated: {{ entry.updated_at }}
     </div>
   {% empty %}
     <p>No entries yet.</p>
