@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
+from .models import FoodEntry
 
 class EditProfileForm(UserChangeForm):
     password = None  # Hide the password field
@@ -8,3 +9,10 @@ class EditProfileForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
+
+# Form for adding/editing FoodEntry
+class FoodEntryForm(forms.ModelForm):
+    class Meta:
+        model = FoodEntry
+        fields = ['food_name', 'quantity', 'date', 'time', 'notes']
+

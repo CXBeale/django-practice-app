@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import FoodEntry
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.decorators import login_required
-from .forms import EditProfileForm
+from .forms import EditProfileForm, FoodEntryForm
 
 
 # User registration view
@@ -33,9 +33,23 @@ def edit_profile(request):
         form = EditProfileForm(instance=request.user)
     return render(request, 'food_tracker/edit_profile.html', {'form': form})
 
-# Food Models here.
+# Food Entry list view
 @login_required
 def food_list(request):
-    print("Food list view called")
-    entries = FoodEntry.objects.all().order_by('-date')      # Retrieve all food entries ordered by most recent first
+    entries = FoodEntry.objects.filter(user=request.user).order_by('-date', '-time')
     return render(request, 'food_tracker/food_list.html', {'entries': entries})
+
+# Add Food Entry view
+@login_required
+def add_food_entry(request):
+    if request.method == 'POST':
+        form = FoodEntryForm(request.POST)
+        if form.is_valid():
+            entry = form.save(commit=False)
+            entry.user = request.user  # Link entry to the logged-in user
+            entry.save()
+            return redirect('food_list')
+    else:
+        form = FoodEntryForm()
+    return render(request, 'food_tracker/add_food_entry.html', {'form': form})
+

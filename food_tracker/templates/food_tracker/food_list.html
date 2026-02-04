@@ -1,15 +1,15 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
 {% block content %}
-  <!-- Your food list content here -->
-  <h1>Food Entries</h1>
-  <ul>
-    {% for entry in entries %}
-      <li>
-        {{ entry.date }}: {{ entry.name }} ({{ entry.calories }} kcal)
-      </li>
-    {% empty %}
-      <li>No food entries yet.</li>
-    {% endfor %}
-  </ul>
+  <h2>Your Food Entries</h2>
+  <a href="{% url 'add_food_entry' %}">Add New Entry</a>
+  {% for entry in entries %}
+    <div>
+      <strong>{{ entry.name }}</strong> ({{ entry.quantity }})<br>
+      Date: {{ entry.date }} at {{ entry.time }}<br>
+      Notes: {{ entry.notes }}<br>
+      Created: {{ entry.created_at }} | Updated: {{ entry.updated_at }}
+    </div>
+  {% empty %}
+    <p>No entries yet.</p>
+  {% endfor %}
 {% endblock %}
