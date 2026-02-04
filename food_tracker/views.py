@@ -4,12 +4,6 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.decorators import login_required
 from .forms import EditProfileForm
 
-# Create your views here.
-@login_required
-def food_list(request):
-    print("Food list view called")
-    entries = FoodEntry.objects.all().order_by('-date')      # Retrieve all food entries ordered by most recent first
-    return render(request, 'food_tracker/food_list.html', {'entries': entries})
 
 # User registration view
 def register(request):
@@ -38,3 +32,10 @@ def edit_profile(request):
     else:
         form = EditProfileForm(instance=request.user)
     return render(request, 'food_tracker/edit_profile.html', {'form': form})
+
+# Food Models here.
+@login_required
+def food_list(request):
+    print("Food list view called")
+    entries = FoodEntry.objects.all().order_by('-date')      # Retrieve all food entries ordered by most recent first
+    return render(request, 'food_tracker/food_list.html', {'entries': entries})
