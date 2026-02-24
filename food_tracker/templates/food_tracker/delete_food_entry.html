@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Delete Food Entry</h2>
+  <p>Are you sure you want to delete <strong>{{ entry.food_name }}</strong> ({{ entry.date }} {{ entry.time }})?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+    <a href="{% url 'food_list' %}">Cancel</a>
+  </form>
+{% endblock %}

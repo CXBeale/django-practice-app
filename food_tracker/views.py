@@ -68,3 +68,13 @@ def edit_food_entry(request, entry_id):
         form = FoodEntryForm(instance=entry)
     return render(request, 'food_tracker/edit_food_entry.html', {'form': form, 'entry': entry})
 
+# Delete Food Entry view
+@login_required
+def delete_food_entry(request, entry_id):
+    entry = get_object_or_404(FoodEntry, id=entry_id, user=request.user)
+    if request.method == 'POST':
+        entry.delete()
+        messages.success(request, "Food entry deleted successfully.")
+        return redirect('food_list')
+    return render(request, 'food_tracker/delete_food_entry.html', {'entry': entry})
+
