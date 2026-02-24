@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import FoodEntry
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.decorators import login_required
 from .forms import EditProfileForm, FoodEntryForm
+from django.contrib import messages
 
 
 # User registration view
@@ -52,4 +53,18 @@ def add_food_entry(request):
     else:
         form = FoodEntryForm()
     return render(request, 'food_tracker/add_food_entry.html', {'form': form})
+
+# Edit Food Entry view
+@login_required
+def edit_food_entry(request, entry_id):
+    entry = get_object_or_404(FoodEntry, id=entry_id, user=request.user)
+    if request.method == 'POST':
+        form = FoodEntryForm(request.POST, instance=entry)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Food entry updated successfully.")
+            return redirect('food_list')
+    else:
+        form = FoodEntryForm(instance=entry)
+    return render(request, 'food_tracker/edit_food_entry.html', {'form': form, 'entry': entry})
 

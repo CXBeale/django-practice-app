@@ -7,6 +7,7 @@
       <strong>{{ entry.food_name }}</strong> ({{ entry.quantity }})<br>
       Date: {{ entry.date }} at {{ entry.time }}<br>
       Notes: {{ entry.notes }}<br>
+      <a href="{% url 'edit_food_entry' entry.id %}">Edit</a>
     </div>
   {% empty %}
     <p>No entries yet.</p>
